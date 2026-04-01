@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     """Application configuration from environment variables."""
 
     # Database
-    DATABASE_URL: str = "postgresql+asyncpg://obras_user:obras_password@localhost:5432/obras_db"
+    DATABASE_URL: str
     DB_ECHO: bool = False  # Log SQL statements
 
     # API

@@ -29,3 +29,23 @@ build/
 # Logs
 logs/
 *.log
+
+# Secrets (explicit)
+.env
+.env.*
+!.env.example
+
+# Frontend build output
+frontend/dist/
+frontend/.vite/
+
+# Python venv
+.venv/
+venv/
+
+# TypeScript build artifacts
+*.tsbuildinfo
+*.d.ts
+frontend/tsc
+frontend/obras-frontend*
+frontend/vite.config.js

@@ -223,7 +223,7 @@ export default function AccessoriesPage() {
                 </button>
               </div>
               {createMutation.isError && (
-                <p className="text-red-600 text-sm">{(createMutation.error as any)?.response?.data?.detail ?? 'Error al crear'}</p>
+                <p className="text-red-600 text-sm">{(() => { const d = (createMutation.error as any)?.response?.data?.detail; if (Array.isArray(d)) return d.map((e: any) => e.msg).join(", "); return typeof d === "string" ? d : "Error al crear"; })()}</p>
               )}
             </form>
           </Dialog.Panel>

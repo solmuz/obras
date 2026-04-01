@@ -161,7 +161,14 @@ export default function UsersPage() {
                 </button>
               </div>
               {createMutation.isError && (
-                <p className="text-red-600 text-sm">{(createMutation.error as any)?.response?.data?.detail ?? 'Error al crear'}</p>
+		  <p className="text-red-600 text-sm">
+			{(() => {
+			const detail = (createMutation.error as any)?.response?.data?.detail;
+			if (Array.isArray(detail)) return detail.map((e: any) => e.msg).join(', ');
+			if (typeof detail === 'string') return detail;
+		    return 'Error al crear';
+		  })()}
+		</p>
               )}
             </form>
           </Dialog.Panel>

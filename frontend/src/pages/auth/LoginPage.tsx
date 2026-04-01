@@ -9,8 +9,8 @@ export default function LoginPage() {
   const { setTokens, setUser, setError: setStoreError } = useAuthStore();
   const loginMutation = useLogin();
   
-  const [email, setEmail] = useState('admin@example.com');
-  const [password, setPassword] = useState('ChangeMe123!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,20 +26,23 @@ export default function LoginPage() {
       
       // Navigate to dashboard
       navigate('/dashboard');
-    } catch (err: any) {
-      const errorMessage = err.response?.data?.detail || err.message || 'Login failed';
-      setError(errorMessage);
-      setStoreError(errorMessage);
-    }
+    }catch (err:any){
+     const detail = err.response?.data?.detail;
+     const errorMessage = Array.isArray(detail)
+	? detail.map((e: any) => e.msg).join(', ')
+	:(typeof detail === 'string' ? detail : err.message || 'Login failed')
+     setError(errorMessage);
+     setStoreError(errorMessage);
+     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-slate-900">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">OBRAS</h1>
+          <img src="/logo.png" alt="Logo" className="h-24 w-24 object-contain mx-auto mb-4" /><h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">OBRAS</h1>
           <p className="text-gray-600 text-center mb-8">
-            Gestión de Accesorios de Izaje
+            Optimized Building Rigging Accesories System
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">

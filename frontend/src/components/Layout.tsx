@@ -43,14 +43,14 @@ export default function Layout() {
           sidebarOpen ? 'w-64' : 'w-20'
         } bg-slate-900 text-white transition-all duration-300 flex flex-col`}
       >
-        <div className="p-4 flex items-center justify-between border-b border-slate-700">
-          {sidebarOpen && <h1 className="text-xl font-bold">OBRAS</h1>}
+        <div className="p-4 flex flex-col items-center border-b border-slate-700 relative">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-1 hover:bg-slate-800 rounded"
+            className="p-1 hover:bg-slate-800 rounded absolute top-3 right-3"
           >
             <Menu size={20} />
           </button>
+          {sidebarOpen && <div className="flex flex-col items-center gap-1 w-full mt-4"><h1 className="text-xl font-bold">OBRAS</h1><img src="/logo.png" alt="Logo" className="h-20 w-20 object-contain" /></div>}
         </div>
 
         <nav className="flex-1 p-4 space-y-2">
