@@ -49,3 +49,4 @@ venv/
 frontend/tsc
 frontend/obras-frontend*
 frontend/vite.config.js
+.claude/
